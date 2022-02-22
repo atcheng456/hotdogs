@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Joe's Hot Dog Store</title>
+        
+        <link rel="stylesheet" href="style.css">
+                                              
+        <script src="https://unpkg.com/mathjs@10.1.1/lib/browser/math.js"></script>
+
+        <script language = "javascript">
+            var hotdogs = prompt("How many hotdogs do you want?");
+            var fries = prompt("How many fries do you want?");
+            var sodas = prompt("How many sodas do you want?");
+
+            function total_food(hotdogs,fries,sodas) {
+                return 3.75*hotdogs + 2*fries + 1.8*sodas; 
+            }
+
+            function specialOffer(priceTotal) {
+                if(priceTotal >= 20) {
+                    return 0.9*priceTotal; 
+                } else {
+                    return "discount not applicable";
+                }
+            }
+
+            function tax(priceTotal) {
+                return 0.0625*priceTotal;
+            }
+            
+            function fullTotal(priceTotal) {
+                return 1.0625*priceTotal;
+            }
+            
+        </script>
+    </head>
+    
+    <body>
+        
+        <div class = "headerimage">
+            <h1 class = "name">JOE'S HOT DOGS</h1>
+            <p class = "headtext">ORDER SUMMARY</p>
+            <img src = "hotdogs2.jpg" id = cover> 
+        </div>
+        
+        <div class = "billing"> 
+            <p id = "title">Items Ordered: </p>
+            <p>Hotdogs: <span id="numHotDogs"></span></p>
+            <p>Fries: <span id="numFries"></span></p>
+            <p>Sodas: <span id="numSodas"></span></p>
+            <p>Subtotal: <span id="subtotal"></span></p>
+            <p>Discount amount: -<span id="special"></span></p>
+            <p>After 10% Discount: <span id="discounts"></span></p>
+            <p>Tax: <span id="tax fee"></span></p>
+            <p id = "totalcost">Final Cost: <span id="final"></span></p>
+        </div>
+        
+        <script type = "text/javascript">
+            let cost = Math.round(total_food(hotdogs, fries, sodas)*100)/100; 
+            let taxFee = Math.round(tax(cost)*100)/100;
+            let percentOff = 0; //discount quantity 
+            let discount = specialOffer(cost); //total after discount
+            let finalCost = Math.round(fullTotal(cost)*100)/100; //with taxes
+            
+            document.getElementById('numHotDogs').innerHTML = hotdogs;
+            document.getElementById('numFries').innerHTML = fries;
+            document.getElementById('numSodas').innerHTML = sodas;
+            
+            document.getElementById('subtotal').innerHTML = cost;
+            
+            if(cost <= 20) {
+                discount = "no discount";
+            }
+            
+            if(discount != "no discount") { //if there is a discount
+                discount = (Math.round(discount*100)/100);
+                percentOff = Math.round((cost - discount)*100)/100; 
+                
+                document.getElementById('special').innerHTML = percentOff;
+                document.getElementById('discounts').innerHTML = discount;
+                
+                taxFee = (Math.round(tax(discount)*100)/100);
+                finalCost = (Math.round(fullTotal(discount)*100)/100);
+            } else { //if there is no discount
+                document.getElementById('special').innerHTML = percentOff;
+                document.getElementById('discounts').innerHTML = discount;
+                discount = cost; 
+            }
+            
+            document.getElementById('tax fee').innerHTML = taxFee;
+            document.getElementById('final').innerHTML = finalCost;
+        </script>
+    </body>
+    
+</html>

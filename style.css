@@ -1,0 +1,49 @@
+* {
+    font-family: monospace;
+}
+
+#headerimage {
+    text-align: center; 
+}
+
+#cover {
+    width: 100%;
+    opacity: 60%; 
+}
+
+.name {
+    text-align: center; 
+}
+
+.headtext {
+    text-align: center; 
+    position: absolute;
+    left: 40px;
+    top: 100px;
+    bottom: 50px; 
+    right: 40px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 8vw; 
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    z-index: 1;
+}
+
+.billing {
+    text-align: center;
+}
+
+#title {
+    font-style: italic;
+    font-weight: bold;
+    border-style: solid;
+    border-color: black; 
+}
+
+
+#totalcost {
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+}
